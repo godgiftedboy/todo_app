@@ -54,9 +54,8 @@ class AddTodoPage extends ConsumerWidget with ValidatorMixin {
                   if (_formKey.currentState!.validate()) {
                     ref.watch(todoProvider.notifier).addTodo(
                           TodoModel(
-                            titleController.text,
-                            descController.text,
-                            DateTime.now(),
+                            title: titleController.text,
+                            desc: descController.text,
                           ),
                         );
                     Navigator.pop(context);
