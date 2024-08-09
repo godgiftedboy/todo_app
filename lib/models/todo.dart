@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class TodoModel {
   final String title;
   final String desc;
@@ -26,4 +28,10 @@ class TodoModel {
 
   @override
   int get hashCode => title.hashCode ^ desc.hashCode;
+
+  static List<TodoModel> todoListFromJson(String str) => List<TodoModel>.from(
+      json.decode(str).map((dynamicTodo) => TodoModel.fromJson(dynamicTodo)));
+
+  static String todoListToJson(List<TodoModel> data) =>
+      json.encode(List<dynamic>.from(data.map((todo) => todo.toJson())));
 }
