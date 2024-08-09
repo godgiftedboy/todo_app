@@ -3,10 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_ap/models/todo.dart';
 import 'package:todo_ap/pages/homepage.dart';
 import 'package:todo_ap/providers/todo_provider.dart';
+import 'package:todo_ap/services/db_service.dart';
+
+final databaseProvider = Provider((ref) => DatabaseService());
 
 final todoProvider =
     StateNotifierProvider<TodoNotifier, List<TodoModel>>((ref) {
-  return TodoNotifier();
+  return TodoNotifier(ref.watch(databaseProvider));
 });
 
 void main() {
